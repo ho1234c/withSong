@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="withSong">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body >
+<div id="container" ng-controller="withSongController">
+    <div id="rankList-container">
+        <div class="select-chart" ng-click="chartToggle()">
+            <div class="select-button">{{ nowChart }}</div>
+        </div>
+        <div ng-class="chartMenuVisible ? 'chart-content' :'chart-content-disabled'">
+            <ol>
+                <div class="divider"></div>
+                <li class="chart-list" ng-click="selectChart('newest')">최신곡 100곡</li>
+                <div class="divider"></div>
+                <li class="chart-list" ng-click="selectChart('realtimeBest')">실시간 100곡</li>
+            </ol>
+        </div>
+        <div class="rankList-innerContainer">
+            <ol>
+                <li ng-repeat="song in melonChartList">
+                    <list-components song-obj="song" list-index="{{$index}}" current-list="melonChartList"></list-components>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="myList-container">
+        <div id="player"></div>
+        <div class="myList-menu">
+            <div class="myList-menu-left">
+                <img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)"/>
+            </div>
+            <div class="myList-menu-right">
+                <img src="icon_download.png" ng-click="mySongListDownload(mySongList)"><img src="icon_open.png">
+                <!--<input type="file" value="aa" on-read-file="mySongListLoad($fileContent)">-->
+            </div>
+        </div>
+        <div class="myList-innerContainer">
+            <ol>
+                <li ng-repeat="song in mySongList">
+                    <list-components song-obj="song" list-index="{{$index}}" current-list="mySongList"></list-components>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="searchList-container">
+        <form id="search-form">
+            <input type="text" id="search-word" placeholder="search" ng-model="searchForVideo" ng-model-options="{ debounce: 800 }" kr-input>
+        </form>
+        <div class="searchList-innerContainer">
+            <ol>
+                <li ng-repeat="song in searchList">
+                    <list-components song-obj="song" list-index="{{$index}}" current-list="searchList"></list-components>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="FileSaver.js"></script>
+<script src="ng-file-upload.js"></script>
+<script src="withSongController.js"></script>
+<script src="listComponents.js"></script>
+<script src="rightclick.js"></script>
+</body>
+</html>
