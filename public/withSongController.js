@@ -1,5 +1,6 @@
-var app = angular.module('withSong', []);
-app.controller('withSongController',['$scope','$http','$window', function($scope, $http, $window) {
+var app = angular.module('withSong', ['ngCookies', 'ngDialog']);
+app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$cookies', function($scope, $http, $window, ngDialog, $cookies) {
+
         var melonApiKey = "d1d6323f-b411-307d-8a36-12dd19c33646";
         var youtubeApiKey = "AIzaSyAYJcoUSoEpehRGo-0XYHd4zafkiSmt9Wk";
 
@@ -232,19 +233,11 @@ app.controller('withSongController',['$scope','$http','$window', function($scope
             return array;
         };
 
-        $scope.mySongListDownload = function(songList){
-            var makeStr = "";
-            for(var i in songList){
-                makeStr += JSON.stringify(songList[i]);
-            }
-            var blob = new Blob([makeStr], {type: 'text/plain;charset=utf-8'});
-            saveAs(blob, "hello world.txt");
-        };
-
-        //$scope.mySongListLoad = function($fileContent){
-        //    console.log($fileContent);
-        //}
+        $scope.openSingUpPopup = function(){
+            ngDialog.open({ template: 'signInTemplate'});
+        }
     }])
+
     // this directive for korean input bug
     .directive('krInput', [ '$parse', function($parse) {
         return {
@@ -257,26 +250,3 @@ app.controller('withSongController',['$scope','$http','$window', function($scope
             }
         };
     } ])
-
-    // this directive for read file
-    .directive('onReadFile', function ($parse) {
-        return {
-            restrict: 'A',
-            scope: false,
-            link: function(scope, element, attrs) {
-                var fn = $parse(attrs.onReadFile);
-
-                element.on('change', function(onChangeEvent) {
-                    var reader = new FileReader();
-
-                    reader.onload = function(onLoadEvent) {
-                        scope.$apply(function() {
-                            fn(scope, {$fileContent:onLoadEvent.target.result});
-                        });
-                    };
-
-                    reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
-                });
-            }
-        };
-    });

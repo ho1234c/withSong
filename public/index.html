@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog.css">
+    <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog-theme-default.css">
 </head>
 <body >
 <div id="container" ng-controller="withSongController">
@@ -31,11 +33,11 @@
         <div id="player"></div>
         <div class="myList-menu">
             <div class="myList-menu-left">
-                <img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)"/>
+                <img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)">
             </div>
             <div class="myList-menu-right">
-                <img src="icon_download.png" ng-click="mySongListDownload(mySongList)"><img src="icon_open.png">
-                <!--<input type="file" value="aa" on-read-file="mySongListLoad($fileContent)">-->
+                <img src="icon_download.png" ng-click="mySongListDownload(mySongList)">
+                <img src="icon_open.png" ng-click="openSingUpPopup()">
             </div>
         </div>
         <div class="myList-innerContainer">
@@ -61,10 +63,22 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-<script src="FileSaver.js"></script>
-<script src="ng-file-upload.js"></script>
+<script src="module/ng-dialog/js/ngDialog.js"></script>
+<script src="module/angular-cookies/angular-cookies.js"></script>
 <script src="withSongController.js"></script>
+<script src="loginController.js"></script>
 <script src="listComponents.js"></script>
 <script src="rightclick.js"></script>
+<script type="text/ng-template" id="signInTemplate">
+    <form name="loginForm" ng-controller="loginController"
+          ng-submit="login(userInfo)">
+        <label for="user-email">email:</label>
+        <input type="text" id="user-email"
+               ng-model="userInfo.email">
+        <button type="submit">Login</button>
+        <button ng-click="cookieLog()">test</button>
+    </form>
+</script>
+
 </body>
 </html>
