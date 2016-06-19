@@ -7,12 +7,9 @@ app.controller('loginController',['$scope', '$http', '$cookies', function($scope
             headers: {'Content-Type': 'application/json'
             }})
             .then(function(res){
-            console.log(res);
+            console.log(res.data);
         });
         $cookies.put('userInfo', userInfo.email);
-    }
-    
-    $scope.cookieLog = function(){
-        console.log($cookies.getAll());
-    }
+    };
+
 }])

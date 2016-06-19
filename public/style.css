@@ -81,6 +81,7 @@ a:visited {
 .select-chart {
     height: 5%;
     background-color: #343434;
+    color: #555555;
 }
 
 .select-chart:hover {
@@ -93,6 +94,7 @@ a:visited {
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
+    font-weight: bold;
 }
 
 .chart-content-disabled {
@@ -191,4 +193,17 @@ a:visited {
 
 #search-word:focus{
     outline: none;
+}
+
+.enterEmail{
+    color: #555555;
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.enterEmail:hover{
+    color: #B0B0B0;
+    cursor: pointer;
 }

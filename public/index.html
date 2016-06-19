@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog.css">
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog-theme-default.css">
 </head>
-<body >
+<body>
 <div id="container" ng-controller="withSongController">
     <div id="rankList-container">
         <div class="select-chart" ng-click="chartToggle()">
@@ -33,13 +33,15 @@
         <div id="player"></div>
         <div class="myList-menu">
             <div class="myList-menu-left">
-                <img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)">
+                <div class="enterEmail" ng-if="!isUser()" ng-click="openSingUpPopup()">PLEASE ENTER YOUR EMAIL</div>
+                <div class="enterEmail" ng-if="isUser()" ng-click="openSingUpPopup()">{{ isUser() }}</div>
             </div>
             <div class="myList-menu-right">
-                <img src="icon_download.png" ng-click="mySongListDownload(mySongList)">
-                <img src="icon_open.png" ng-click="openSingUpPopup()">
+                <!--<img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)">-->
+                <img src="icon_shuffle.png" ng-click="login()">
             </div>
         </div>
+        <div class="divider"></div>
         <div class="myList-innerContainer">
             <ol>
                 <li ng-repeat="song in mySongList">
@@ -51,7 +53,7 @@
 
     <div id="searchList-container">
         <form id="search-form">
-            <input type="text" id="search-word" placeholder="search" ng-model="searchForVideo" ng-model-options="{ debounce: 800 }" kr-input>
+            <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchForVideo" ng-model-options="{ debounce: 800 }" kr-input>
         </form>
         <div class="searchList-innerContainer">
             <ol>
@@ -69,16 +71,7 @@
 <script src="loginController.js"></script>
 <script src="listComponents.js"></script>
 <script src="rightclick.js"></script>
-<script type="text/ng-template" id="signInTemplate">
-    <form name="loginForm" ng-controller="loginController"
-          ng-submit="login(userInfo)">
-        <label for="user-email">email:</label>
-        <input type="text" id="user-email"
-               ng-model="userInfo.email">
-        <button type="submit">Login</button>
-        <button ng-click="cookieLog()">test</button>
-    </form>
-</script>
+<script src="krInput.js"></script>
 
 </body>
 </html>
