@@ -16,6 +16,7 @@ app.route('/')
     .get(function(req,res){
         res.sendFile(__dirname + '/public/index.html');
     })
+
     // email Auth request
     .post(function(req, res){
         models.sequelize.sync().then(function () {
@@ -25,17 +26,31 @@ app.route('/')
                         res.send(song);
                     })
                 }
+            }).catch(function(err){
+                res.send(err);
             })
         });
     })
 
-    // delete song
+    // insert song
     .put(function(req, res){
         var songObj = req.body;
         models.User.find({where: {user_email: songObj.userInfo}, raw: true}).then(function(user){
             models.Song.create({user_id: user.user_id, contents: JSON.stringify(songObj.data), list_name: 'test'});
+        }).catch(function(err){
+            res.send(err);
         })
-    });
+    })
+
+    // delete song
+    .delete(function(req, res){
+        var songObj = req.body;
+        models.User.find({where: {user_email: songObj.userInfo}, raw: true}).then(function(user){
+            models.Song.destroy({where: {user_id: user.user_id, contents: JSON.stringify(songObj.data)}});
+        }).catch(function(err){
+            res.send(err);
+        })
+    })
 
 
 app.listen(process.env.PORT || '3000', function(){

@@ -1,6 +1,5 @@
 if (!global.hasOwnProperty('db')) {
     var config = require('./config');
-    var path = require('path');
     var Sequelize = require('sequelize');
     var sequelize = new Sequelize('postgres://postgres:1234@localhost/withSong');
     var db = {};

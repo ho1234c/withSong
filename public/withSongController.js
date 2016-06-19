@@ -178,24 +178,27 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         }
 
         var contextList = $scope[currentList];
+        var songObj = {};
+        songObj.data = contextList[index];
 
         if(currentList == "melonChartList" || currentList == "searchList"){
             $scope.mySongList.push(contextList[index]);
-
             // if there are login info, insert songData into database
             if($cookies.get('userInfo')){
-                var songObj = {};
-                songObj.data = contextList[index];
                 songObj['userInfo'] = $cookies.get('userInfo');
                 $http.put('/', JSON.stringify(songObj), {headers: {'Content-Type': 'application/json'}});
             }
-        }else if(currentList == "myList"){
-            ////////////////
-            // delete data//
-            ////////////////
+        }else if(currentList == "mySongList"){
+            console.log('aa');
+            // delete data
+            if($cookies.get('userInfo')){
+                songObj['userInfo'] = $cookies.get('userInfo');
+                $http.delete('/', {headers: {'Content-Type': 'application/json'}, data: JSON.stringify(songObj)});
+            }
+
         }
+
         contextList.splice(index, 1);
-        console.log($scope.mySongList);
     };
 
     // this function be called when change current video.
@@ -226,6 +229,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             }})
             .then(
                 function(res){
+                    $scope.mySongList = [];
                     for(var i in res.data){
                         $scope.mySongList.push(JSON.parse(res.data[i].contents));
                     }
@@ -233,11 +237,6 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         $cookies.put('userInfo', userInfo.email);
 
     };
-
-    // user change
-    $scope.$watch(function() { return $cookies.get('userInfo'); }, function(v) {
-        //console.log(v);
-    });
 
     // search for song
     $scope.searchForVideo = "";
