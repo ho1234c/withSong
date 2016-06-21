@@ -254,9 +254,11 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             })
                 .then(
                     function(res){
+                        console.log(res.data);
                         if(res.data == 'success'){
                             $scope.SignUpdiaolg.close();
                         }else{
+                            console.log('aa');
                             /////// input text value 초기화 코드
                             $scope.signUpNotice = res.data;
                         }
@@ -313,11 +315,9 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             '<div class="popupTitle">withSong - sign in</div>'+
             '<div class="popupNotice">{{signInNotice}}</div>'+
             '<form class="loginForm" name="loginForm" ng-submit="login()">'+
-            '<input type="text" class="user-email" ng-model="email" placeholder="Your Email address"><br>'+
-            '<div class="popupButton">'+
-            '<button type="submit">Login</button>'+
-            '<button ng-click="openSignUpPopup()">register</button>'+
-            '</div>'+
+            '<input type="text" class="user-email" ng-model="email" placeholder="Your Email address">'+
+            '<input type="image" name="submit" src="icon_button_login.png" border="0" alt="Submit" class="buttonIcon"/>'+
+            '<div class="registerBtn" ng-click="openSignUpPopup()">if you want register...</div>'+
             '</form>',
             scope: $scope,
             plain: true
@@ -333,10 +333,8 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             '<div class="popupTitle">withSong - sign up</div>'+
             '<div class="popupNotice">{{signUpNotice}}</div>'+
             '<form class="registerForm" name="registerForm" ng-submit="register()">'+
-            '<input type="text" class="user-email" ng-model="email" placeholder="Please enter your e-mail use."><br>'+
-            '<div class="popupButton">'+
-            '<button type="submit">confirm</button>'+
-            '</div>'+
+            '<input type="text" class="user-email" ng-model="email" placeholder="Please enter your e-mail use.">'+
+            '<input type="image" name="submit" src="icon_button_register.png" border="0" alt="Submit" class="buttonIcon"/>'+
             '</form>',
             scope: $scope,
             plain: true

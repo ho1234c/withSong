@@ -33,7 +33,7 @@ app.route('/')
                         res.send('server error');
                     });
                 }else{
-                    res.send('Duplicate email.')
+                    res.send('Duplicate email. please use another Email')
                 }
             }).catch(function(err){
                 // user.find exception
