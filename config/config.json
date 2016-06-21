@@ -1,6 +1,6 @@
 {
   "production":
   {
-    "use_env_variable": "postgres://buozapqidmkhrg:_FjPWaYfB9IYaOVLj3TuHpMw41@ec2-54-225-79-158.compute-1.amazonaws.com:5432/d2mro4ihpmjdsa"
+    "use_env_variable": "postgres://smheysmcnwxqpr:-fCra1m0Jp9P1pmknyY25mMktB@ec2-54-243-201-58.compute-1.amazonaws.com:5432/d6mcfga5gosleg"
   }
 }
