@@ -37,6 +37,8 @@ app.route('/')
                 }
             }).catch(function(err){
                 // user.find exception
+
+                console.log(err);
                 res.send('server error');
             });
             console.log(req.body);
