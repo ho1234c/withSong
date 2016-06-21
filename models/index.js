@@ -1,7 +1,7 @@
 if (!global.hasOwnProperty('db')) {
     var config = require('./config');
     var Sequelize = require('sequelize');
-    var sequelize = new Sequelize('postgres://smheysmcnwxqpr:-fCra1m0Jp9P1pmknyY25mMktB@ec2-54-243-201-58.compute-1.amazonaws.com:5432/d6mcfga5gosleg');
+    var sequelize = new Sequelize('postgres://lmbpfdhygybwai:7L6dabZtR5z3nyB6snGAaedjhD@ec2-54-243-236-70.compute-1.amazonaws.com:5432/dnnq4jlamkcrg');
     //var sequelize = new Sequelize('postgres://postgres:1234@localhost/withSong');
 
     //// for local db
