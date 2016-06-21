@@ -2,9 +2,9 @@
 <html ng-app="withSong">
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog.css">
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog-theme-default.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div id="container" ng-controller="withSongController">
@@ -33,12 +33,11 @@
         <div id="player"></div>
         <div class="myList-menu">
             <div class="myList-menu-left">
-                <div class="enterEmail" ng-if="!isUser()" ng-click="openSingUpPopup()">PLEASE ENTER YOUR EMAIL</div>
-                <div class="enterEmail" ng-if="isUser()" ng-click="openSingUpPopup()">{{ isUser() }}</div>
+                <div class="enterEmail" ng-if="!isUser()" ng-click="openSingInPopup()">PLEASE ENTER YOUR EMAIL</div>
+                <div class="enterEmail" ng-if="isUser()" ng-click="openSingInPopup()">{{ isUser() }}</div>
             </div>
             <div class="myList-menu-right">
-                <!--<img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)">-->
-                <img src="icon_shuffle.png" ng-click="login()">
+                <img src="icon_shuffle.png" ng-click="shuffleArray(mySongList)">
             </div>
         </div>
         <div class="divider"></div>

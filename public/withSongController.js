@@ -189,7 +189,6 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                 $http.put('/', JSON.stringify(songObj), {headers: {'Content-Type': 'application/json'}});
             }
         }else if(currentList == "mySongList"){
-            console.log('aa');
             // delete data
             if($cookies.get('userInfo')){
                 songObj['userInfo'] = $cookies.get('userInfo');
@@ -220,24 +219,54 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     };
 
     // login function
-    $scope.login = function(userInfo){
-        $http({
-            url: "/",
-            method: "POST",
-            data: userInfo,
-            headers: {'Content-Type': 'application/json'
-            }})
-            .then(
+    $scope.login = function(){
+        if(this.email){
+            $http({
+                url: "/?type=login",
+                method: "POST",
+                data: {email : this.email},
+                headers: {'Content-Type': 'application/json'}
+            }).then(
                 function(res){
-                    $scope.mySongList = [];
-                    for(var i in res.data){
-                        $scope.mySongList.push(JSON.parse(res.data[i].contents));
+                    if(res.data.song){
+                        $scope.mySongList = [];
+                        for(var i in res.data.song){
+                            $scope.mySongList.push(JSON.parse(res.data.song[i].contents));
+                        }
+                        $cookies.put('userInfo', this.email);
+                        $scope.SignIndiaolg.close();
+                    }else{
+                        $scope.signInNotice = res.data
                     }
                 });
-        $cookies.put('userInfo', userInfo.email);
-
+        }
+        // ???? register popup을 열면 login popup의 폼이 submit됨.
     };
 
+    //register function
+    $scope.register = function(){
+        if(this.email){
+            $http({
+                url: "/?type=register",
+                method: "POST",
+                data: {email : this.email},
+                headers: {'Content-Type': 'application/json'}
+            })
+                .then(
+                    function(res){
+                        if(res.data == 'success'){
+                            $scope.SignUpdiaolg.close();
+                        }else{
+                            /////// input text value 초기화 코드
+                            $scope.signUpNotice = res.data;
+                        }
+
+                    });
+        }else{
+            $scope.SignUpdiaolg = 'Email is Empty!'
+        }
+
+    };
     // search for song
     $scope.searchForVideo = "";
 
@@ -276,17 +305,41 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         return array;
     };
 
-    // using ngDialog
-    $scope.openSingUpPopup = function(){
-        ngDialog.open({
+    // sign in popup with ngDialog
+    $scope.signInNotice = 'welcome to withSong';
+    $scope.openSingInPopup = function(){
+        $scope.SignIndiaolg = ngDialog.open({
             template:
-            '<form name="loginForm" ng-submit="login(userInfo)">'+
-            '<label for="user-email">email:</label>'+
-            '<input type="text" id="user-email" ng-model="userInfo.email">'+
+            '<div class="popupTitle">withSong - sign in</div>'+
+            '<div class="popupNotice">{{signInNotice}}</div>'+
+            '<form class="loginForm" name="loginForm" ng-submit="login()">'+
+            '<input type="text" class="user-email" ng-model="email" placeholder="Your Email address"><br>'+
+            '<div class="popupButton">'+
             '<button type="submit">Login</button>'+
+            '<button ng-click="openSignUpPopup()">register</button>'+
+            '</div>'+
             '</form>',
             scope: $scope,
             plain: true
-        });
+        })
+
+    };
+
+    // sign up popup with ngDialog
+    $scope.signUpNotice = 'Will not be used for purposes to other than identification.';
+    $scope.openSignUpPopup = function(){
+        $scope.SignUpdiaolg = ngDialog.open({
+            template:
+            '<div class="popupTitle">withSong - sign up</div>'+
+            '<div class="popupNotice">{{signUpNotice}}</div>'+
+            '<form class="registerForm" name="registerForm" ng-submit="register()">'+
+            '<input type="text" class="user-email" ng-model="email" placeholder="Please enter your e-mail use."><br>'+
+            '<div class="popupButton">'+
+            '<button type="submit">confirm</button>'+
+            '</div>'+
+            '</form>',
+            scope: $scope,
+            plain: true
+        })
     }
 }])
