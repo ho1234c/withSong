@@ -20,32 +20,34 @@ app.route('/')
 
     // email Auth request
     .post(function(req, res){
-        // if query string is 'register'
-        if(req.query.type == 'register'){
-            models.User.find({ where: {user_email: req.body.email}, raw: true}).then(function(user){
-                //check duplicate email.
-                if(!user){
-                    models.User.create({user_email: req.body.email}).then(function(){
-                        res.send('success');
-                    }).catch(function(err){
-                        // user.create exception
-                        console.log(err);
-                        res.send('server error');
-                    });
-                }else{
-                    res.send('Duplicate email. please use another Email')
-                }
-            }).catch(function(err){
-                // user.find exception
+        // database sync
+        models.sequelize.sync({force: true}).then(function(){
+            // if query string is 'register'
+            if(req.query.type == 'register'){
+                models.User.find({ where: {user_email: req.body.email}, raw: true}).then(function(user){
+                    //check duplicate email.
+                    if(!user){
+                        models.User.create({user_email: req.body.email}).then(function(){
+                            res.send('success');
+                        }).catch(function(err){
+                            // user.create exception
+                            console.log(err);
+                            res.send('server error');
+                        });
+                    }else{
+                        res.send('Duplicate email. please use another Email')
+                    }
+                }).catch(function(err){
+                    // user.find exception
 
-                console.log(err);
-                res.send('server error');
-            });
-            console.log(req.body);
-        }
-        // if query string is 'login'
-        else if(req.query.type == 'login'){
-            models.sequelize.sync().then(function () {
+                    console.log(err);
+                    res.send('server error');
+                });
+                console.log(req.body);
+            }
+            // if query string is 'login'
+            else if(req.query.type == 'login'){
+
                 models.User.find({ where: {user_email: req.body.email},raw: true }).then(function(user){
                     // do you have user?
                     if(user){
@@ -60,12 +62,13 @@ app.route('/')
                     console.log(err);
                     res.send('server error');
                 })
-            }).catch(function(err){
-                // sync() exception
-                console.log(err);
-                res.send('server error');
-            });
-        }
+            }
+        }).catch(function(err){
+            //sync exception
+            console.log(err);
+            res.send('server error');
+        });
+
     })
 
     // insert song request
