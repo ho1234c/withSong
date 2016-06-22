@@ -9,7 +9,11 @@ app.locals.pretty = true;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-
+models.sequelize.sync({force: true}).then(function(){
+    console.log('database sync success');
+}).catch(function(){
+    console.log('database sync fail');
+});
 
 app.route('/')
 
@@ -20,8 +24,6 @@ app.route('/')
 
     // email Auth request
     .post(function(req, res){
-        // database sync
-        models.sequelize.sync({force: true}).then(function(){
             // if query string is 'register'
             if(req.query.type == 'register'){
                 models.User.find({ where: {user_email: req.body.email}, raw: true}).then(function(user){
@@ -49,6 +51,7 @@ app.route('/')
             else if(req.query.type == 'login'){
 
                 models.User.find({ where: {user_email: req.body.email},raw: true }).then(function(user){
+                    console.log(user);
                     // do you have user?
                     if(user){
                         models.Song.findAll({ where: {user_id: user.user_id},raw : true}).then(function(song){
@@ -63,11 +66,7 @@ app.route('/')
                     res.send('server error');
                 })
             }
-        }).catch(function(err){
-            //sync exception
-            console.log(err);
-            res.send('server error');
-        });
+
 
     })
 
