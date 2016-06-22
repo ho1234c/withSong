@@ -182,22 +182,40 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         songObj.data = contextList[index];
 
         if(currentList == "melonChartList" || currentList == "searchList"){
-            $scope.mySongList.push(contextList[index]);
+
             // if there are login info, insert songData into database
             if($cookies.get('userInfo')){
                 songObj['userInfo'] = $cookies.get('userInfo');
-                $http.put('/', JSON.stringify(songObj), {headers: {'Content-Type': 'application/json'}});
+                $http.put('/', JSON.stringify(songObj), {headers: {'Content-Type': 'application/json'}}).then(function(res){
+                    if(res.data == 'success'){
+                        $scope.mySongList.push(contextList[index]);
+                        contextList.splice(index, 1);
+                    }else{
+                        alert('server error');
+                    }
+                });
+            }else{
+                // if don't have loginInfo
+                $scope.mySongList.push(contextList[index]);
+                contextList.splice(index, 1);
             }
         }else if(currentList == "mySongList"){
             // delete data
             if($cookies.get('userInfo')){
                 songObj['userInfo'] = $cookies.get('userInfo');
-                $http.delete('/', {headers: {'Content-Type': 'application/json'}, data: JSON.stringify(songObj)});
+                $http.delete('/', {headers: {'Content-Type': 'application/json'}, data: JSON.stringify(songObj)}).then(function(res){
+                    if(res.data){
+                        contextList.splice(index, 1);
+                    }else{
+                        alert('server error');
+                    }
+                });
+            }else{
+                // if don't have loginInfo
+                contextList.splice(index, 1);
             }
 
         }
-
-        contextList.splice(index, 1);
     };
 
     // this function be called when change current video.
@@ -220,7 +238,8 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
 
     // login function
     $scope.login = function(){
-        if(this.email){
+        var email = this.email;
+        if(email){
             $http({
                 url: "/?type=login",
                 method: "POST",
@@ -233,7 +252,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                         for(var i in res.data.song){
                             $scope.mySongList.push(JSON.parse(res.data.song[i].contents));
                         }
-                        $cookies.put('userInfo', this.email);
+                        $cookies.put('userInfo', email);
                         $scope.SignIndiaolg.close();
                     }else{
                         $scope.signInNotice = res.data
@@ -254,11 +273,9 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             })
                 .then(
                     function(res){
-                        console.log(res.data);
                         if(res.data == 'success'){
                             $scope.SignUpdiaolg.close();
                         }else{
-                            console.log('aa');
                             /////// input text value 초기화 코드
                             $scope.signUpNotice = res.data;
                         }

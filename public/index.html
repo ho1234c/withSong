@@ -22,7 +22,7 @@
         </div>
         <div class="rankList-innerContainer">
             <ol>
-                <li ng-repeat="song in melonChartList">
+                <li ng-repeat="song in melonChartList track by $index">
                     <list-components song-obj="song" list-index="{{$index}}" current-list="melonChartList"></list-components>
                 </li>
             </ol>
@@ -43,7 +43,7 @@
         <div class="divider"></div>
         <div class="myList-innerContainer">
             <ol>
-                <li ng-repeat="song in mySongList">
+                <li ng-repeat="song in mySongList track by $index">
                     <list-components song-obj="song" list-index="{{$index}}" current-list="mySongList"></list-components>
                 </li>
             </ol>
@@ -56,7 +56,7 @@
         </form>
         <div class="searchList-innerContainer">
             <ol>
-                <li ng-repeat="song in searchList">
+                <li ng-repeat="song in searchList track by $index">
                     <list-components song-obj="song" list-index="{{$index}}" current-list="searchList"></list-components>
                 </li>
             </ol>

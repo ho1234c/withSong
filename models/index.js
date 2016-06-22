@@ -1,10 +1,15 @@
 if (!global.hasOwnProperty('db')) {
     var config = require('./config');
     var Sequelize = require('sequelize');
-    var sequelize = new Sequelize('postgres://lmbpfdhygybwai:7L6dabZtR5z3nyB6snGAaedjhD@ec2-54-243-236-70.compute-1.amazonaws.com:5432/dnnq4jlamkcrg');
-    //var sequelize = new Sequelize('postgres://postgres:1234@localhost/withSong');
+    var sequelize;
 
-    //// for local db
+    if(process.env.USERNAME == 'JongHo'){
+        sequelize = new Sequelize('postgres://postgres:1234@localhost/withSong');
+    }else{
+        sequelize = new Sequelize('postgres://lmbpfdhygybwai:7L6dabZtR5z3nyB6snGAaedjhD@ec2-54-243-236-70.compute-1.amazonaws.com:5432/dnnq4jlamkcrg');
+    }
+
+    // for local db
     //sequelize.authenticate().then(function(){
     //    console.log('using server database');
     //}).catch(function(){
