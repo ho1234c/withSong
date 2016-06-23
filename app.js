@@ -8,7 +8,7 @@ app.locals.pretty = true;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public', {index: false}));
 models.sequelize.sync()
     .then(function(){
         console.log('database sync success');
@@ -21,6 +21,7 @@ app.route('/')
 
     // get request
     .get(function(req,res){
+        console.log(req.header('user-agent'));
         res.sendFile(__dirname + '/public/index.html');
     })
 

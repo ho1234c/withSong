@@ -130,10 +130,11 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var playerWidth = getComputedStyle(document.getElementById("myList-container")).width;
+    var playerWidth = parseInt(getComputedStyle(document.getElementById("myList-container")).width);
+    var playerHight = Math.round(playerWidth * 9/16);
     $window.onYouTubeIframeAPIReady = function() {
         $scope.player = new YT.Player('player', {
-            height: '390',
+            height: playerHight,
             width: playerWidth,
             videoId: '89ItUebEa8c', // 윤하 - 기다리다
             events: {
