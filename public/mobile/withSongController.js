@@ -129,6 +129,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
     var playerWidth = parseInt(getComputedStyle(document.getElementById("video-container")).width);
     var playerHight = Math.round(playerWidth * 9/16);
     $window.onYouTubeIframeAPIReady = function() {

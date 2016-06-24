@@ -24,13 +24,9 @@ input:focus {
 }
 
 #myList-container {
-    width: 33%;
-    height: 100%;
-    float: left;
-}
-
-#myList-container {
     width: 34%;
+    height: 30%;
+    float: left;
     display: inline-block;
 }
 
@@ -39,6 +35,14 @@ input:focus {
     height: 100%;
     float: right;
     position: relative;
+}
+
+#video-container{
+    width: 100%;
+}
+
+#songList-container{
+    width: 100%;
 }
 
 ol {

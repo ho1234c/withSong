@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="withSong">
+<html ng-app="withSong" ng-clock>
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog.css">
@@ -30,7 +30,9 @@
     </div>
 
     <div id="myList-container">
-        <div id="player"></div>
+        <div id="video-container">
+            <div id="player"></div>
+        </div>
         <div class="myList-menu">
             <div class="myList-menu-left">
                 <div class="enterEmail" ng-if="!isUser()" ng-click="openSingInPopup()">PLEASE ENTER YOUR EMAIL</div>
