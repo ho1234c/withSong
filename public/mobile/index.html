@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="mobile-web-app-capable" content="yes">
+    <script type="text/javascript" language = "javascript">
+        window.addEventListener('load', function() {
+            setTimeout(scrollTo, 0, 0, 1);
+        }, false);
+    </script>
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog.css">
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog-theme-default.css">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -75,6 +79,7 @@
     <!--</div>-->
     <!--</div>-->
 </div>
+<br>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 <script src="module/ng-dialog/js/ngDialog.js"></script>
 <script src="module/angular-cookies/angular-cookies.js"></script>
