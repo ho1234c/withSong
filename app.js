@@ -20,7 +20,7 @@ app.route('/')
     // get request
     .get(function(req,res){
         var md = new MobileDetect(req.header['user-agent']);
-        console.log(req.header['user-agent']);
+        console.log(req.header);
         console.log(md.os());
         console.log(md.is('AndroidOS'));
         if(md.is('AndroidOS') || md.is('iOS') || md.is('BlackBerryOS')){
