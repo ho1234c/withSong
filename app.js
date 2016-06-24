@@ -20,7 +20,7 @@ app.route('/')
     // get request
     .get(function(req,res){
         var md = new MobileDetect(req.header['user-agent']);
-        console.log(req.header['user-agent']);
+        console.log(req);
         console.log(md.mobile());
         if(md.mobile()){
             app.use(express.static(__dirname + '/public/mobile', {index: false}));
