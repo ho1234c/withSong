@@ -19,19 +19,19 @@ models.sequelize.sync()
 app.route('/')
     // get request
     .get(function(req,res){
-        //var md = new MobileDetect(req.header['user-agent']);
-        //if(md.mobile()){
-        //    app.use(express.static(__dirname + '/public/mobile', {index: false}));
-        //    res.sendFile(__dirname + '/public/mobile/index.html');
-        //}
-        //else{
-        //    app.use(express.static(__dirname + '/public', {index: false}));
-        //    res.sendFile(__dirname + '/public/index.html');
-        //}
+        var md = new MobileDetect(req.header['user-agent']);
+        if(md.mobile()){
+            app.use(express.static(__dirname + '/public/mobile', {index: false}));
+            res.sendFile(__dirname + '/public/mobile/index.html');
+        }
+        else{
+            app.use(express.static(__dirname + '/public', {index: false}));
+            res.sendFile(__dirname + '/public/index.html');
+        }
 
-        // test for mobile
-        app.use(express.static(__dirname + '/public/mobile', {index: false}));
-        res.sendFile(__dirname + '/public/mobile/index.html');
+        //// test for mobile
+        //app.use(express.static(__dirname + '/public/mobile', {index: false}));
+        //res.sendFile(__dirname + '/public/mobile/index.html');
     })
 
     // email Auth request
