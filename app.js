@@ -20,10 +20,8 @@ app.route('/')
     // get request
     .get(function(req,res){
         var md = new MobileDetect(req.get('User-Agent'));
-        console.log(req.get('User-Agent'));
-        console.log(md.os());
-        console.log(md.is('AndroidOS'));
-        if(md.is('AndroidOS') || md.is('iOS') || md.is('BlackBerryOS')){
+
+        if(md.mobile()){
             app.use(express.static(__dirname + '/public/mobile', {index: false}));
             res.sendFile(__dirname + '/public/mobile/index.html');
         }
