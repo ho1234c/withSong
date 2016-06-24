@@ -217,9 +217,16 @@ ol {
     }
 }
 
-@media (min-height: 600px){
+
+@media (min-height: 600px) and (min-height: 700px){
     .myList-innerContainer{
         height: 300px;
+    }
+}
+
+@media (min-height: 700px){
+    .myList-innerContainer{
+        height: 400px;
     }
 }
 
