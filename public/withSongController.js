@@ -317,8 +317,8 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     };
 
     // search event
-    $scope.searchForVideo= function(){
-        $scope.searchParam = new youtubeParam(encodeURIComponent($scope.searchWord), 'snippet', youtubeApiKey);
+    $scope.searchForVideo= function(searchWord){
+        $scope.searchParam = new youtubeParam(encodeURIComponent(searchWord), 'snippet', youtubeApiKey);
         $scope.searchUrl = makeUrl(youtubeUrl, $scope.searchParam) + '&maxResults=15';
 
         $http.get($scope.searchUrl)
