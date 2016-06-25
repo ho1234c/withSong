@@ -15,9 +15,9 @@
     </div>
 
     <div id="tab-container">
-        <div id="rankList-tab" ng-class="container == 'rankList'? 'activeTab': 'inactiveTab'"><img src="icon_chart.png"></div>
-        <div id="myList-tab" ng-class="container == 'myList'? 'activeTab': 'inactiveTab'"><img src="icon_mylist.png"></div>
-        <div id="searchList-tab" ng-class="container == 'searchList'? 'activeTab': 'inactiveTab'"><img src="icon_search.png"></div>
+        <div id="rankList-tab" ng-class="container == 'rankList'? 'activeTab': 'inactiveTab'" ng-click="container = 'rankList'"><img src="icon_chart.png"></div>
+        <div id="myList-tab" ng-class="container == 'myList'? 'activeTab': 'inactiveTab'" ng-click="container = 'myList'"><img src="icon_mylist.png"></div>
+        <div id="searchList-tab" ng-class="container == 'searchList'? 'activeTab': 'inactiveTab'" ng-click="container = 'searchList'"><img src="icon_search.png"></div>
     </div>
 
     <div id="rankList-container" ng-switch-when="rankList" ng-swipe-left="leftSwipe($event)">
