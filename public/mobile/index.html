@@ -64,7 +64,7 @@
 
     <div id="searchList-container" ng-switch-when="searchList" ng-swipe-right="rightSwipe($event)">
         <form id="search-form">
-            <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchForVideo" ng-model-options="{ debounce: 700 }" kr-input>
+            <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchWord" ng-model-options="{ debounce: 700 }" ng-change="searchForVideo()" kr-input>
         </form>
         <div class="divider"></div>
         <div class="searchList-innerContainer">

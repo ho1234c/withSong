@@ -87,9 +87,9 @@ ol {
 .myList-menu {
     height: 30px;
     font-size: 15px;
-    padding: 10px;
-    text-indent: 20px;
+    padding: 10px 20px;
     color: #555555;
+    line-height: 32px;
     font-weight: bold;
     position: relative;
 }
@@ -101,14 +101,8 @@ ol {
 
 .myList-menu-left{
     float: left;
-    position: absolute;
-    height: 20px;
     width: 80%;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto 0;
+
 }
 
 .myList-menu-right{
@@ -179,6 +173,11 @@ ol {
 
     /*this code for web-kit bug about radius corner*/
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+/* ngdialog override*/
+.ngdialog.ngdialog-theme-default{
+    padding-top: 80px;
 }
 
 /* ngdialog override */
@@ -256,7 +255,7 @@ ol {
 
 .select-button {
     font-size: 15px;
-    line-height: 30px;
+    line-height: 32px;
     height: 100%;
     padding: 10px 20px;
     box-sizing: border-box;
@@ -312,17 +311,14 @@ ol {
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #555555;
-    font-weight: bold;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color:    #555555;
     opacity:  1;
-    font-weight: bold;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
     color:    #555555;
     opacity:  1;
-    font-weight: bold;
 }
 
 /* scroll bar */

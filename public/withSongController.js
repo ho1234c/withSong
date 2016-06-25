@@ -19,7 +19,6 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         }else if($scope.container == 'rankList'){
             $scope.container = 'myList';
         }
-        console.log($scope.container);
     };
 
     $scope.rightSwipe = function($event){
@@ -29,7 +28,6 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         }else if($scope.container == 'searchList'){
             $scope.container = 'myList';
         }
-        console.log($scope.container);
     };
 
     var melonApiKey = "d1d6323f-b411-307d-8a36-12dd19c33646";
@@ -317,27 +315,23 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         }
 
     };
-    // search for song
-    $scope.searchForVideo = "";
 
-    // watch event listener for search word
-    $scope.$watch('searchForVideo', function(searchWord){
-        $scope.searchParam = new youtubeParam(encodeURIComponent($scope.searchForVideo), 'snippet', youtubeApiKey);
+    // search event
+    $scope.searchForVideo= function(){
+        $scope.searchParam = new youtubeParam(encodeURIComponent($scope.searchWord), 'snippet', youtubeApiKey);
         $scope.searchUrl = makeUrl(youtubeUrl, $scope.searchParam) + '&maxResults=15';
 
-        if(searchWord && searchWord == $scope.searchForVideo) {
-            $http.get($scope.searchUrl)
-                .then(
-                    function (res) {
-                        $scope.searchList = [];
-                        for(var i in res.data.items){
-                            $scope.searchList.push(res.data.items[i]);
-                        }
-                    },
-                    requestFail
-                )
-        }
-    });
+        $http.get($scope.searchUrl)
+            .then(
+                function (res) {
+                    $scope.searchList = [];
+                    for(var i in res.data.items){
+                        $scope.searchList.push(res.data.items[i]);
+                    }
+                },
+                requestFail
+            )
+    };
 
     $scope.shuffleArray = function(array) {
         var m = array.length, t, i;
