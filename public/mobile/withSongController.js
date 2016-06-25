@@ -131,7 +131,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var playerWidth = parseInt(getComputedStyle(document.getElementById("video-container")).width);
-    var playerHight = Math.round(playerWidth * 9/16);
+    var playerHight = Math.ceil(playerWidth * 9/16);
     $window.onYouTubeIframeAPIReady = function() {
         $scope.player = new YT.Player('player', {
             height: playerHight,

@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div id="container" ng-controller="withSongController">
+<div id="container" ng-controller="withSongController" ng-switch on="container" ng-init="container = 'myList'">
+    <!--<button style="float: left" ng-click="container = 'rankList'">Left swipe Button</button>-->
+    <!--<button style="float: right" ng-click="container = 'myList'">Right swipe Button</button>-->
     <div id="video-container">
         <div id="player"></div>
     </div>
@@ -18,38 +20,31 @@
         <div id="rankList-tab"><img src="icon_chart.png"></div>
         <div id="myList-tab"><img src="icon_mylist.png"></div>
         <div id="searchList-tab"><img src="icon_search.png"></div>
-        <button id="goFS">Go fullscreen<button>
-            <script>
-                var goFS = document.getElementById("goFS");
-                goFS.addEventListener("click", function() {
-                    document.body.requestFullScreen();
-                }, false);
-            </script>
     </div>
 
-    <!--<div id="rankList-container">-->
-        <!--<div class="select-chart" ng-click="chartToggle()">-->
-            <!--<div class="select-button">{{ nowChart }}</div>-->
-        <!--</div>-->
-        <!--<div ng-class="chartMenuVisible ? 'chart-content' :'chart-content-disabled'">-->
-            <!--<ol>-->
-                <!--<div class="divider"></div>-->
-                <!--<li class="chart-list" ng-click="selectChart('newest')">최신곡 100곡</li>-->
-                <!--<div class="divider"></div>-->
-                <!--<li class="chart-list" ng-click="selectChart('realtimeBest')">실시간 100곡</li>-->
-            <!--</ol>-->
-        <!--</div>-->
-        <!--<div class="rankList-innerContainer">-->
-            <!--<ol>-->
-                <!--<li ng-repeat="song in melonChartList track by $index">-->
-                    <!--<list-components song-obj="song" list-index="{{$index}}" current-list="melonChartList"></list-components>-->
-                <!--</li>-->
-            <!--</ol>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div id="rankList-container" ng-switch-when="rankList" ng-swipe-right="container = 'myList'">
+        <div class="select-chart" ng-click="chartToggle()">
+            <div class="select-button">{{ nowChart }}</div>
+        </div>
+        <div ng-class="chartMenuVisible ? 'chart-content' :'chart-content-disabled'">
+            <ol>
+                <li class="chart-list" ng-click="selectChart('newest')">최신곡 100곡</li>
+                <div class="divider"></div>
+                <li class="chart-list" ng-click="selectChart('realtimeBest')">실시간 100곡</li>
+            </ol>
+        </div>
+        <div class="divider"></div>
+        <div class="rankList-innerContainer">
+            <ol>
+                <li ng-repeat="song in melonChartList track by $index">
+                    <list-components song-obj="song" list-index="{{$index}}" current-list="melonChartList"></list-components>
+                </li>
+            </ol>
+        </div>
+    </div>
 
 
-    <div id="myList-container">
+    <div id="myList-container" ng-switch-when="myList" ng-swipe-left="container = 'rankList'" ng-swipe-right="container = 'searchList'">
         <div class="myList-menu">
             <div class="myList-menu-left">
                 <div class="enterEmail" ng-if="!isUser()" ng-click="openSingInPopup()">PLEASE ENTER YOUR EMAIL</div>
@@ -69,18 +64,19 @@
         </div>
     </div>
 
-    <!--<div id="searchList-container">-->
-    <!--<form id="search-form">-->
-    <!--<input type="text" id="search-word" placeholder="SEARCH" ng-model="searchForVideo" ng-model-options="{ debounce: 700 }" kr-input>-->
-    <!--</form>-->
-    <!--<div class="searchList-innerContainer">-->
-    <!--<ol>-->
-    <!--<li ng-repeat="song in searchList track by $index">-->
-    <!--<list-components song-obj="song" list-index="{{$index}}" current-list="searchList"></list-components>-->
-    <!--</li>-->
-    <!--</ol>-->
-    <!--</div>-->
-    <!--</div>-->
+    <div id="searchList-container" ng-switch-when="searchList" ng-swipe-left="container = 'myList'">
+        <form id="search-form">
+            <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchForVideo" ng-model-options="{ debounce: 700 }" kr-input>
+        </form>
+        <div class="divider"></div>
+        <div class="searchList-innerContainer">
+            <ol>
+                <li ng-repeat="song in searchList track by $index">
+                    <list-components song-obj="song" list-index="{{$index}}" current-list="searchList"></list-components>
+                </li>
+            </ol>
+        </div>
+    </div>
 </div>
 <div>afaf</div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>

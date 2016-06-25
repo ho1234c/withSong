@@ -125,6 +125,18 @@ a:visited {
     overflow-x: hidden;
 }
 
+.chart-list{;
+    display: block;
+    height: 40px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.chart-list:hover{
+    cursor: pointer;
+    background-color: #555555;
+}
+
 .myList-innerContainer {
     height: 50%;
     list-style: none;
@@ -162,18 +174,6 @@ a:visited {
 
 .myList-menu-right{
     float: right;
-}
-
-.chart-list{;
-    display: block;
-    height: 40px;
-    padding-top: 20px;
-    padding-left: 20px;
-}
-
-.chart-list:hover{
-    cursor: pointer;
-    background-color: #555555;
 }
 
 .divider{
