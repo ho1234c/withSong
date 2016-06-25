@@ -63,16 +63,16 @@ ol {
 }
 
 #myList-tab{
-    width: 33%;
+    width: 34%;
     height: 100%;
     float: left;
-
+    display: inline-block;
 }
 
 #searchList-tab{
     width: 33%;
     height: 100%;
-    float: left;
+    float: right;
 }
 
 .activeTab{
