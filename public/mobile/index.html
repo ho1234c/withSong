@@ -3,11 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script type="text/javascript" language = "javascript">
-        window.addEventListener('load', function() {
-            setTimeout(scrollTo, 0, 0, 1);
-        }, false);
-    </script>
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog.css">
     <link rel="stylesheet" type="text/css" href="module/ng-dialog/css/ngDialog-theme-default.css">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -22,6 +18,13 @@
         <div id="rankList-tab"><img src="icon_chart.png"></div>
         <div id="myList-tab"><img src="icon_mylist.png"></div>
         <div id="searchList-tab"><img src="icon_search.png"></div>
+        <button id="goFS">Go fullscreen<button>
+            <script>
+                var goFS = document.getElementById("goFS");
+                goFS.addEventListener("click", function() {
+                    document.body.requestFullScreen();
+                }, false);
+            </script>
     </div>
 
     <!--<div id="rankList-container">-->
