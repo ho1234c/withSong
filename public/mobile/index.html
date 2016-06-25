@@ -13,16 +13,16 @@
     <!--<button style="float: left" ng-click="container = 'rankList'">Left swipe Button</button>-->
     <!--<button style="float: right" ng-click="container = 'myList'">Right swipe Button</button>-->
     <div id="video-container">
-        <div id="player"></div>
+        <!--<div id="player"></div>-->
     </div>
 
     <div id="tab-container">
-        <div id="rankList-tab"><img src="icon_chart.png"></div>
-        <div id="myList-tab"><img src="icon_mylist.png"></div>
-        <div id="searchList-tab"><img src="icon_search.png"></div>
+        <div id="rankList-tab" ng-class="container == 'rankList'? 'activeTab': 'inactiveTab'"><img src="icon_chart.png"></div>
+        <div id="myList-tab" ng-class="container == 'myList'? 'activeTab': 'inactiveTab'"><img src="icon_mylist.png"></div>
+        <div id="searchList-tab" ng-class="container == 'searchList'? 'activeTab': 'inactiveTab'"><img src="icon_search.png"></div>
     </div>
 
-    <div id="rankList-container" ng-switch-when="rankList" ng-swipe-right="container = 'myList'">
+    <div id="rankList-container" ng-switch-when="rankList" ng-swipe-left="leftSwipe($event)">
         <div class="select-chart" ng-click="chartToggle()">
             <div class="select-button">{{ nowChart }}</div>
         </div>
@@ -44,7 +44,7 @@
     </div>
 
 
-    <div id="myList-container" ng-switch-when="myList" ng-swipe-left="container = 'rankList'" ng-swipe-right="container = 'searchList'">
+    <div id="myList-container" ng-switch-when="myList" ng-swipe-left="leftSwipe($event)" ng-swipe-right="rightSwipe($event)">
         <div class="myList-menu">
             <div class="myList-menu-left">
                 <div class="enterEmail" ng-if="!isUser()" ng-click="openSingInPopup()">PLEASE ENTER YOUR EMAIL</div>
@@ -64,7 +64,7 @@
         </div>
     </div>
 
-    <div id="searchList-container" ng-switch-when="searchList" ng-swipe-left="container = 'myList'">
+    <div id="searchList-container" ng-switch-when="searchList" ng-swipe-right="rightSwipe($event)">
         <form id="search-form">
             <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchForVideo" ng-model-options="{ debounce: 700 }" kr-input>
         </form>
@@ -78,8 +78,8 @@
         </div>
     </div>
 </div>
-<div>afaf</div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-touch.min.js"></script>
 <script src="module/ng-dialog/js/ngDialog.js"></script>
 <script src="module/angular-cookies/angular-cookies.js"></script>
 <script src="withSongController.js"></script>
