@@ -1,5 +1,36 @@
-var app = angular.module('withSong', ['ngCookies', 'ngDialog']);
+var app = angular.module('withSong', ['ngCookies', 'ngDialog', 'ngTouch']);
 app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$cookies', function($scope, $http, $window, ngDialog, $cookies) {
+
+    $scope.stopActions = function ($event) {
+        if ($event.stopPropagation) {
+            $event.stopPropagation();
+        }
+        if ($event.preventDefault) {
+            $event.preventDefault();
+        }
+        $event.cancelBubble = true;
+        $event.returnValue = false;
+    };
+
+    $scope.leftSwipe = function($event){
+        $scope.stopActions($event);
+        if($scope.container == 'myList'){
+            $scope.container = 'searchList'
+        }else if($scope.container == 'rankList'){
+            $scope.container = 'myList';
+        }
+        console.log($scope.container);
+    };
+
+    $scope.rightSwipe = function($event){
+        $scope.stopActions($event);
+        if($scope.container == 'myList'){
+            $scope.container = 'rankList';
+        }else if($scope.container == 'searchList'){
+            $scope.container = 'myList';
+        }
+        console.log($scope.container);
+    };
 
     var melonApiKey = "d1d6323f-b411-307d-8a36-12dd19c33646";
     var youtubeApiKey = "AIzaSyAYJcoUSoEpehRGo-0XYHd4zafkiSmt9Wk";

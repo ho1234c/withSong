@@ -32,7 +32,6 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         console.log($scope.container);
     };
 
-
     var melonApiKey = "d1d6323f-b411-307d-8a36-12dd19c33646";
     var youtubeApiKey = "AIzaSyAYJcoUSoEpehRGo-0XYHd4zafkiSmt9Wk";
 
