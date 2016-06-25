@@ -135,8 +135,8 @@ ol {
 .popupNotice{
     font-size: 14px;
     height: 20px;
-    text-indent: 20px;
-    margin: 10px 0;
+    line-height: 20px;
+    margin: 10px 15px;
 }
 .user-email{
     background-image: url(icon_email.png);
