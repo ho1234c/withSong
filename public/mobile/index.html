@@ -67,7 +67,7 @@
             <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchWord" ng-model-options="{ debounce: 700 }" ng-change="searchForVideo(searchWord)" kr-input>
         </form>
         <div class="divider"></div>
-        <div class="searchList-innerContainer">
+        <div class="searchList-innerContainer" ng-scroll-end="searchForVideo(searchWord, nextPageToken)">
             <ol>
                 <li ng-repeat="song in searchList track by $index">
                     <list-components song-obj="song" list-index="{{$index}}" current-list="searchList"></list-components>
@@ -85,6 +85,6 @@
 <script src="listComponents.js"></script>
 <script src="rightclick.js"></script>
 <script src="krInput.js"></script>
-
+<script src="ngScrollEnd.js"></script>
 </body>
 </html>

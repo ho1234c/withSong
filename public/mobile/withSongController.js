@@ -75,10 +75,11 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     }
 
     // init for youtube api
-    function youtubeParam(q, part, key){
+    function youtubeParam(q, part, key, type){
         this.q = q;         // search word
         this.part = part;   // resource identifier
         this.key = key;     // api key
+        this.type = type;   // search type
     }
 
     // chart dropdown visible?
@@ -119,7 +120,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
 
                     // call youtube api
                     for(var j in songList){
-                        var ytParamForChart = new youtubeParam(songList[j], 'snippet', youtubeApiKey);
+                        var ytParamForChart = new youtubeParam(songList[j], 'snippet', youtubeApiKey, 'video');
                         var ytUrlForChart = makeUrl(youtubeUrl, ytParamForChart);
                         $http.get(ytUrlForChart + '&order=viewCount') //viewCount sort
                             .then(
@@ -158,9 +159,8 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
     var playerWidth = parseInt(getComputedStyle(document.getElementById("video-container")).width);
-    var playerHight = Math.ceil(playerWidth * 9/16);
+    var playerHight = Math.round(playerWidth * 9/16);
     $window.onYouTubeIframeAPIReady = function() {
         $scope.player = new YT.Player('player', {
             height: playerHight,
@@ -318,14 +318,21 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     };
 
     // search event
-    $scope.searchForVideo= function(searchWord){
-        $scope.searchParam = new youtubeParam(encodeURIComponent(searchWord), 'snippet', youtubeApiKey);
-        $scope.searchUrl = makeUrl(youtubeUrl, $scope.searchParam) + '&maxResults=15';
+    $scope.nextPageToken = "";
+    $scope.searchForVideo= function(searchWord, nextPageToken){
+        $scope.searchParam = new youtubeParam(encodeURIComponent(searchWord), 'snippet', youtubeApiKey, 'video');
+        $scope.searchUrl = makeUrl(youtubeUrl, $scope.searchParam) + '&maxResults=10';
+        if(nextPageToken){
+            $scope.searchUrl = $scope.searchUrl + '&pageToken=' + nextPageToken;
+        }else{
+            $scope.nextPageToken = "";
+            $scope.searchList = [];
+        }
 
         $http.get($scope.searchUrl)
             .then(
                 function (res) {
-                    $scope.searchList = [];
+                    $scope.nextPageToken = res.data.nextPageToken;
                     for(var i in res.data.items){
                         $scope.searchList.push(res.data.items[i]);
                     }
