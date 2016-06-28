@@ -29,7 +29,6 @@ app.route('/')
             app.use(express.static(__dirname + '/public', {index: false}));
             res.sendFile(__dirname + '/public/index.html');
         }
-
         
         // test for mobile
         //app.use(express.static(__dirname + '/public/mobile', {index: false}));
