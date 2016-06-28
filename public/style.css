@@ -46,6 +46,8 @@ input:focus {
 #songList-container{
     height: 100%;
     overflow: hidden;
+    padding: 6px 20px;
+    box-sizing: border-box;
 }
 
 #songList-container:hover{
@@ -60,7 +62,7 @@ ol {
     margin: 0;
 }
 li {
-    height: 14%;
+    height: 15%;
 }
 .thumnail {
     width: 30%;
@@ -70,10 +72,6 @@ li {
 
 .thumnail img{
     width: 100%;
-}
-
-.row{
-    padding: 6px 20px;
 }
 
 .name {

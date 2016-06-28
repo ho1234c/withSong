@@ -4,11 +4,9 @@ app.directive('listComponents', function() {
         replace: true,
         scope: true,
         template:
-        '<div id="songList-container">'+
-        '<div ng-click="changeVideo()" class="row" ng-right-click="toggleList()">'+
+        '<div id="songList-container" ng-click="changeVideo()" ng-right-click="toggleList()">'+
         '<span class="thumnail"><img src="{{song.snippet.thumbnails.default.url}}"/></span>'+
         '<div class="name">{{song.snippet.title}}</div>'+
-        '</div>'+
         '</div>',
         link: function(scope, element, attr){
             scope.changeVideo = function(){
