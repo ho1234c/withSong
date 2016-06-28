@@ -30,6 +30,7 @@ app.route('/')
             res.sendFile(__dirname + '/public/index.html');
         }
 
+        
         // test for mobile
         //app.use(express.static(__dirname + '/public/mobile', {index: false}));
         //res.sendFile(__dirname + '/public/mobile/index.html');
