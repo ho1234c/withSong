@@ -304,6 +304,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                 .then(
                     function(res){
                         if(res.data == 'success'){
+                            $scope.signInNotice = 'Registration complete! please login.';
                             $scope.SignUpdiaolg.close();
                         }else{
                             /////// input text value 초기화 코드
@@ -320,6 +321,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     // search event
     $scope.nextPageToken = "";
     $scope.searchForVideo= function(searchWord, nextPageToken){
+        if(!searchWord) return;
         $scope.searchParam = new youtubeParam(encodeURIComponent(searchWord), 'snippet', youtubeApiKey, 'video');
         $scope.searchUrl = makeUrl(youtubeUrl, $scope.searchParam) + '&maxResults=10';
         if(nextPageToken){
@@ -358,8 +360,8 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
     };
 
     // sign in popup with ngDialog
-    $scope.signInNotice = 'welcome to withSong';
     $scope.openSingInPopup = function(){
+        $scope.signInNotice = 'welcome to withSong';
         $scope.SignIndiaolg = ngDialog.open({
             template:
             '<div class="popupTitle">withSong - sign in</div>'+

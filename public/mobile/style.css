@@ -6,6 +6,9 @@ html, body{
     overflow: hidden;
     background-color: #222222;
     font-family: 'KoPub Dotum';
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 iframe{

@@ -29,7 +29,7 @@ app.route('/')
             app.use(express.static(__dirname + '/public', {index: false}));
             res.sendFile(__dirname + '/public/index.html');
         }
-        
+
         // test for mobile
         //app.use(express.static(__dirname + '/public/mobile', {index: false}));
         //res.sendFile(__dirname + '/public/mobile/index.html');
@@ -88,8 +88,6 @@ app.route('/')
                     res.send('server error');
                 })
         }
-
-
     })
 
     // insert song request
@@ -138,15 +136,3 @@ app.route('/')
 app.listen(process.env.PORT || '3000', function(){
     console.log('start app on port %d!', this.address().port);
 });
-
-
-//2016-06-23T04:02:18.004027+00:00 app[web.1]: Mozilla/5.0 (Windows NT 6.1; WOW64)
-//AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36
-//
-//2016-06-23T04:03:57.209982+00:00 app[web.1]: Mozilla/5.0 (Linux; Android 6.0.1;
-//SAMSUNG SM-G930S Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBro
-//wser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36
-//
-//2016-06-23T04:02:49.156649+00:00 app[web.1]: Mozilla/5.0 (Linux; Android 4.4.2;
-//LG-F350S Build/KOT49I.F350S10r) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51
-//.0.2704.81 Mobile Safari/537.36
