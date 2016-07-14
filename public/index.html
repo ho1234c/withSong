@@ -10,6 +10,9 @@
 <body>
 <div id="container" ng-controller="withSongController">
     <div id="rankList-container">
+        <div class="tutorial" ng-if="!melonChartList.length">
+            <img src="ranklist_tutorial.png">
+        </div>
         <div class="select-chart" ng-click="chartToggle()">
             <div class="select-button">{{ nowChart }}</div>
         </div>
@@ -34,6 +37,9 @@
         <div id="video-container">
             <div id="player"></div>
         </div>
+        <div class="tutorial" ng-if="!mySongList.length">
+            <img src="mylist_tutorial.png">
+        </div>
         <div class="myList-menu">
             <div class="myList-menu-left">
                 <div class="enterEmail" ng-if="!isUser()" ng-click="openSingInPopup()">PLEASE ENTER YOUR EMAIL</div>
@@ -54,6 +60,9 @@
     </div>
 
     <div id="searchList-container">
+        <div class="tutorial" ng-if="!searchList.length">
+            <img src="searchlist_tutorial.png">
+        </div>
         <form id="search-form">
             <input type="text" id="search-word" placeholder="SEARCH" ng-model="searchWord" ng-model-options="{ debounce: 700 }" ng-change="searchForVideo(searchWord)" kr-input>
         </form>
