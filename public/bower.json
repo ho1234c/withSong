@@ -1,0 +1,23 @@
+{
+  "name": "withSong",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "jongho <ho1234c@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-cookies": "^1.5.7",
+    "angular-touch": "^1.5.7",
+    "angular": "angularjs#^1.5.7",
+    "ng-dialog": "ngDialog#^0.6.2"
+  }
+}

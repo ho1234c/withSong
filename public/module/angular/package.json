@@ -1,0 +1,58 @@
+{
+  "name": "angular",
+  "version": "1.2.30",
+  "description": "HTML enhanced for web apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular.js.git"
+  },
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "client-side"
+  ],
+  "author": {
+    "name": "Angular Core Team",
+    "email": "angular-core+npm@google.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "homepage": "http://angularjs.org",
+  "gitHead": "e3c63aac8a20f58a24ec3d376111587fe9688b9d",
+  "_id": "angular@1.2.30",
+  "_shasum": "4f1d700eb828e3acf622529ca6b176738de2beaa",
+  "_from": "angular@latest",
+  "_npmVersion": "2.0.2",
+  "_nodeVersion": "0.10.26",
+  "_npmUser": {
+    "name": "angularcore",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "4f1d700eb828e3acf622529ca6b176738de2beaa",
+    "tarball": "https://registry.npmjs.org/angular/-/angular-1.2.30.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/angular-1.2.30.tgz_1469097290952_0.9752959706820548"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular/-/angular-1.2.30.tgz"
+}

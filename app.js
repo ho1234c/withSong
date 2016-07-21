@@ -8,6 +8,7 @@ app.locals.pretty = true;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/node_modules'));
 models.sequelize.sync()
     .then(function(){
         console.log('database sync success');

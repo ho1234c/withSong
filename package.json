@@ -4,11 +4,9 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "angular-cookies": "^1.5.7",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "mobile-detect": "^1.3.2",
-    "ng-dialog": "^0.6.2",
     "pg": "^5.1.0",
     "sequelize": "^3.23.3",
     "underscore": "^1.8.3"
