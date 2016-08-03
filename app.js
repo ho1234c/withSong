@@ -39,7 +39,7 @@ app.route('/')
     // email Auth request
     .post(function(req, res){
         // if query string is 'register'
-        if(req.query.type == 'register'){
+        if(req.query.type === 'register'){
             models.User.find({ where: {user_email: req.body.email}, raw: true})
                 .then(function(user){
                     //check duplicate email.
@@ -54,7 +54,7 @@ app.route('/')
                                 res.send('server error');
                             });
                     }else{
-                        res.send('Duplicate email. please use another Email')
+                        res.send('Duplicate email. please use another Email');
                     }
                 })
                 .catch(function(err){
@@ -65,7 +65,7 @@ app.route('/')
             console.log(req.body);
         }
         // if query string is 'login'
-        else if(req.query.type == 'login'){
+        else if(req.query.type === 'login'){
             models.User.find({ where: {user_email: req.body.email},raw: true })
                 .then(function(user){
                     // do you have user?
@@ -78,7 +78,7 @@ app.route('/')
                                 // song.find exception
                                 console.log(err);
                                 res.send('server error');
-                            })
+                            });
                     }else{
                         res.send('Email does not exist.');
                     }
@@ -87,7 +87,7 @@ app.route('/')
                     // user.find exception
                     console.log(err);
                     res.send('server error');
-                })
+                });
         }
     })
 
@@ -110,7 +110,7 @@ app.route('/')
                 // user.find exception
                 console.log(err);
                 res.send('server error');
-            })
+            });
     })
 
     // delete song request
@@ -131,7 +131,7 @@ app.route('/')
                 // user.find exception
                 console.log(err);
                 res.send('server error');
-            })
+            });
     });
 
 app.listen(process.env.PORT || '3000', function(){

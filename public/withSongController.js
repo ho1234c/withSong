@@ -14,18 +14,18 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
 
     $scope.leftSwipe = function($event){
         $scope.stopActions($event);
-        if($scope.container == 'myList'){
-            $scope.container = 'searchList'
-        }else if($scope.container == 'rankList'){
+        if($scope.container === 'myList'){
+            $scope.container = 'searchList';
+        }else if($scope.container === 'rankList'){
             $scope.container = 'myList';
         }
     };
 
     $scope.rightSwipe = function($event){
         $scope.stopActions($event);
-        if($scope.container == 'myList'){
+        if($scope.container === 'myList'){
             $scope.container = 'rankList';
-        }else if($scope.container == 'searchList'){
+        }else if($scope.container === 'searchList'){
             $scope.container = 'myList';
         }
     };
@@ -96,7 +96,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         for(var i in require){
             result.push(i + "=" + require[i]);
         }
-        return base + result.join("&")
+        return base + result.join("&");
     }
 
     // function for request failed
@@ -134,18 +134,18 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                                 },
                                 // request for search to youtube is fail
                                 requestFail
-                            )
+                            );
                     }
                 },
                 // request for chart to melon is fail
                 requestFail
-            )
+            );
     }
 
     // chart dropdown select
     $scope.selectChart = function(chart){
         $scope.melonUrl = melonUrlList[chart];
-        $scope.nowChart = (chart == "newest")? "최신곡 100곡" : "실시간 100곡";
+        $scope.nowChart = (chart === "newest")? "최신곡 100곡" : "실시간 100곡";
         $scope.chartToggle();
 
         // call melon api
@@ -211,13 +211,13 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
         var songObj = {};
         songObj.data = contextList[index];
 
-        if(currentList == "melonChartList" || currentList == "searchList"){
+        if(currentList === "melonChartList" || currentList === "searchList"){
 
             // if there are login info, insert songData into database
             if($cookies.get('userInfo')){
-                songObj['userInfo'] = $cookies.get('userInfo');
+                songObj.userInfo = $cookies.get('userInfo');
                 $http.put('/', JSON.stringify(songObj), {headers: {'Content-Type': 'application/json'}}).then(function(res){
-                    if(res.data == 'success'){
+                    if(res.data === 'success'){
                         $scope.mySongList.push(contextList[index]);
                         contextList.splice(index, 1);
                     }else{
@@ -229,10 +229,10 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                 $scope.mySongList.push(contextList[index]);
                 contextList.splice(index, 1);
             }
-        }else if(currentList == "mySongList"){
+        }else if(currentList === "mySongList"){
             // delete data
             if($cookies.get('userInfo')){
-                songObj['userInfo'] = $cookies.get('userInfo');
+                songObj.userInfo = $cookies.get('userInfo');
                 $http.delete('/', {headers: {'Content-Type': 'application/json'}, data: JSON.stringify(songObj)}).then(function(res){
                     if(res.data){
                         contextList.splice(index, 1);
@@ -250,7 +250,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
 
     // this function be called when change current video.
     $scope.onPlayerStateChange = function(event){
-        if(event.data == 0){
+        if(event.data === 0){
             $scope.changeCurrentVideo($scope.currentVideo.list, parseInt($scope.currentVideo.index)+1, $scope.currentVideo.element);
         }
         //-1 (unstarted)
@@ -285,11 +285,10 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                         $cookies.put('userInfo', email);
                         $scope.SignIndiaolg.close();
                     }else{
-                        $scope.signInNotice = res.data
+                        $scope.signInNotice = res.data;
                     }
                 });
         }
-        // ???? register popup을 열면 login popup의 폼이 submit됨.
     };
 
     //register function
@@ -303,7 +302,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             })
                 .then(
                     function(res){
-                        if(res.data == 'success'){
+                        if(res.data === 'success'){
                             $scope.signInNotice = 'Registration complete! please login.';
                             $scope.SignUpdiaolg.close();
                         }else{
@@ -313,7 +312,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
 
                     });
         }else{
-            $scope.SignUpdiaolg = 'Email is Empty!'
+            $scope.SignUpdiaolg = 'Email is Empty!';
         }
 
     };
@@ -340,7 +339,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
                     }
                 },
                 requestFail
-            )
+            );
     };
 
     $scope.shuffleArray = function(array) {
@@ -373,7 +372,7 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             '</form>',
             scope: $scope,
             plain: true
-        })
+        });
 
     };
 
@@ -390,6 +389,6 @@ app.controller('withSongController',['$scope','$http','$window', 'ngDialog', '$c
             '</form>',
             scope: $scope,
             plain: true
-        })
-    }
+        });
+    };
 }])
